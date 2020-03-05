@@ -4,6 +4,10 @@ function activateGallery() {
 
   thumbnails.forEach(function(thumbnail) {
     thumbnail.addEventListener("click", function() {
+      // Switch 'current' class
+      document.querySelector(".current").classList.remove("current");
+      thumbnail.parentNode.classList.add("current");
+
       // Swap image
       let newImageSrc = thumbnail.dataset.largeVersion;
       mainImage.setAttribute("src", newImageSrc);
