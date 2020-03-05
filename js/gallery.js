@@ -1,6 +1,9 @@
 function activateGallery() {
   let thumbnails = document.querySelectorAll("#gallery-thumbs > div > img");
   let mainImage = document.querySelector("#gallery-photo img");
+  let galleryInfo = document.querySelector("#gallery-info");
+  let title = galleryInfo.querySelector(".title");
+  let description = galleryInfo.querySelector(".description");
 
   thumbnails.forEach(function(thumbnail) {
     thumbnail.addEventListener("click", function() {
@@ -13,8 +16,12 @@ function activateGallery() {
       mainImage.setAttribute("src", newImageSrc);
 
       // Swap alt text
-      let title = thumbnail.dataset.title;
-      mainImage.setAttribute("alt", title);
+      let alt = thumbnail.dataset.title;
+      mainImage.setAttribute("alt", alt);
+
+      // Swap image info
+      title.innerHTML = thumbnail.dataset.title;
+      description.innerHTML = thumbnail.dataset.description;
     });
   });
 }
