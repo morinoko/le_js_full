@@ -6,21 +6,23 @@ function activateGallery() {
   let description = galleryInfo.querySelector(".description");
 
   thumbnails.forEach(function(thumbnail) {
+    // Preload large images
+    let newImageSrc = thumbnail.dataset.largeVersion;
+    let largeVersion = new Image();
+    largeVersion.src = newImageSrc;
+
     thumbnail.addEventListener("click", function() {
       // Switch 'current' class
       document.querySelector(".current").classList.remove("current");
       thumbnail.parentNode.classList.add("current");
 
       // Swap image
-      let newImageSrc = thumbnail.dataset.largeVersion;
       mainImage.setAttribute("src", newImageSrc);
 
-      // Swap alt text
-      let alt = thumbnail.dataset.title;
-      mainImage.setAttribute("alt", alt);
-
-      // Swap image info
-      title.innerHTML = thumbnail.dataset.title;
+      // Swap alt text and image info
+      let titleText = thumbnail.dataset.title;
+      mainImage.setAttribute("alt", titleText);
+      title.innerHTML = titleText;
       description.innerHTML = thumbnail.dataset.description;
     });
   });
